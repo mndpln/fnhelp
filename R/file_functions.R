@@ -6,6 +6,7 @@
 #' @param df The data frame to be exported
 #' @param directory The directory where the Word file should be saved as a string.
 #' @return Location of Word document created
+#' @export
 
 word_saver = function(df, directory) {
   requireNamespace("officer", quietly = T)

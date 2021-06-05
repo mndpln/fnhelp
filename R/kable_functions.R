@@ -6,6 +6,7 @@
 #' @param df An object of class tbl.df, data.frame or tbl.
 #' @param position Alignment of kable output as a string. Default value is \code{"center"}.
 #' @return A kable. Output may be piped into specific formatting preferences for each column.
+#' @export
 
 format_kable = function(df, position = "center") {
   requireNamespace("kableExtra", quietly = TRUE)

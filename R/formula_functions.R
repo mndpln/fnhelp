@@ -8,6 +8,7 @@
 #' @return a formula of the form \code{y ~ x} as string
 #' @examples
 #' \dontrun{formula_generator(predictors, 'Cluster')}
+#' @export
 
 formula_generator = function(predictors, response) {
   paste0(response, " ~ ", paste0(predictors, collapse = " + "))

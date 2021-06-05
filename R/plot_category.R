@@ -10,8 +10,9 @@
 #' @param var2 Categorical variable in data frame to be used as y-axis in the
 #'   boxplot, or as x-axis in the histogram in the histogram.
 #' @return A ggplot object. May add additional layers with a \code{+}.
+#' @export
 
-gg.category = function(df, plot_type, var1, var2) {
+plot_category = function(df, plot_type, var1, var2) {
   requireNamespace("ggplot2", quietly = T)
   requireNamespace("rlang", quietly = T)
 
@@ -26,7 +27,7 @@ gg.category = function(df, plot_type, var1, var2) {
   }
 }
 
-.gg.category.boxplot = function(df, var1, var2) {
+.plot_category.boxplot = function(df, var1, var2) {
   requireNamespace("rlang", quietly = T)
   requireNamespace("tidyr", quietly = T)
 
@@ -45,7 +46,7 @@ gg.category = function(df, plot_type, var1, var2) {
   return(output)
 }
 
-.gg.category.histogram = function(df, var1, var2) {
+.plot_category.histogram = function(df, var1, var2) {
   requireNamespace("rlang", quietly = T)
   requireNamespace("tidyr", quietly = T)
 
