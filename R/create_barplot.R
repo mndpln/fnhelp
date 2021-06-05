@@ -12,6 +12,7 @@
 #' @param xlab x-axis label.
 #' @param ylab y-axis label.
 #' @return A ggplot object. May add additional layers with a \code{+}.
+#' @export
 
 create_barplot = function(df,
                            filter_var = NULL,
