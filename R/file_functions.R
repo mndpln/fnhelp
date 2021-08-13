@@ -3,12 +3,13 @@
 #'
 #' Exports a data frame as a Word document in the directory specified
 #'
-#' @param df The data frame to be exported
+#' @param df The data frame to be exported.
 #' @param directory The directory where the Word file should be saved as a string.
-#' @return Location of Word document created
+#' @return Location of Word document created.
 #' @export
 
 word_saver = function(df, directory) {
+  requireNamespace("flextable", quietly = T)
   requireNamespace("officer", quietly = T)
   filename = deparse(substitute(df))
 

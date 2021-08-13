@@ -3,9 +3,9 @@
 #'
 #' Writes a formula as a string.
 #'
-#' @param predictors A vector of predictor variables as strings
-#' @param response A response variable as a string
-#' @return a formula of the form \code{y ~ x} as string
+#' @param predictors A vector of predictor variables as strings.
+#' @param response A response variable as a string.
+#' @return a formula of the form \code{y ~ x} as string.
 #' @examples
 #' \dontrun{formula_generator(predictors, 'Cluster')}
 #' @export

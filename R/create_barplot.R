@@ -15,15 +15,15 @@
 #' @export
 
 create_barplot = function(df,
-                           filter_var = NULL,
-                           filter_value = NULL,
-                           facet = FALSE,
-                           facet_var = NULL,
-                           plot_title,
-                           aes_x,
-                           aes_y = ..prop..,
-                           xlab,
-                           ylab = "Proportion") {
+                          filter_var = NULL,
+                          filter_value = NULL,
+                          facet = FALSE,
+                          facet_var = NULL,
+                          plot_title,
+                          aes_x,
+                          aes_y = ..prop..,
+                          xlab,
+                          ylab = "Proportion") {
   filter_var = enquo(filter_var)
   filter_value = enquo(filter_value)
   if (quo_is_null(filter_var)) {
@@ -39,7 +39,7 @@ create_barplot = function(df,
 
   if (facet == TRUE) {
     label_df = data %>%
-      group_by(!!facet_var, !!aes_x) %>%
+      group_by(!!facet_var,!!aes_x) %>%
       count() %>%
       group_by(!!facet_var) %>%
       mutate(group_sum = sum(n))

@@ -67,4 +67,3 @@ plot_category = function(df, plot_type, var1, var2) {
 
   return(output)
 }
-
