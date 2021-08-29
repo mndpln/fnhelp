@@ -1,0 +1,90 @@
+---
+title: "Custom Xaringan Template"
+author: "Your Name"
+output:output:
+  xaringan::moon_reader:
+    mathjax: "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"
+    css: ["default", "tamu", "metropolis-fonts"]
+    df_print: paged
+    fig_height: 5
+    fig_width: 7
+    nature:
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = NA,
+                      tidy = TRUE, tidy.opts = list(width.cutoff = 60),
+                      fig.align = "center", null_prefix = TRUE)
+```
+
+```{r output-hook, include=FALSE}
+default_output_hook = knitr::knit_hooks$get("output")
+
+knitr::knit_hooks$set(
+  output = function(x, options) {
+    comment = knitr::opts_current$get("comment")
+    
+    if (is.na(comment))
+      comment = ""
+    
+    can_null = grepl(paste0(comment, "\\s*\\[\\d?\\]"), x, perl = TRUE)
+    do_null = isTRUE(knitr::opts_current$get("null_prefix"))
+    
+    if (can_null && do_null) {
+      align_index = regexpr("\\]", x)[1] - 1
+      re = paste0("^.{", align_index, "}\\]")
+      rep = comment
+      x = gsub(re, rep, x)
+    }
+    
+    default_output_hook(x, options)
+  }
+)
+```
+
+```{css, echo=FALSE}
+.code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+font-size: 90%; color: #B22222; }
+```
+
+## Note to User  
+
+This template requires that you have `xaringan` installed. Also, be sure to remove this message before knitting your presentation!  
+
+---
+
+# Slide 1  
+--
+  
+* Bullet 1
+--
+  
+* Bullet 2
+
+---
+
+# Slide 2  
+--
+  
+* Bullet 1
+--
+  
+* Here is .code[code] that should not be evaluated.  
+--
+  
+* Bullet 3
+
+---
+
+# Slide 3  
+
+Example of embedded HTML:  
+
+<div class="iframe-container">
+  <iframe src="http://r-pkgs.had.co.nz/namespace.html" allowfullscreen></iframe>
+</div>
+
+---

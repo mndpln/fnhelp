@@ -1,0 +1,74 @@
+---
+title: "Markdown Template: Tabbed Display"
+author: "Your Name"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  html_document:
+    fig_height: 5
+    fig_width: 7
+    theme: darkly
+    highlight: kate
+    code_folding: show
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = NA,
+                      tidy = TRUE, tidy.opts = list(width.cutoff = 60),
+                      fig.align = "center", null_prefix = TRUE)
+```
+
+```{r output-hook, include=FALSE}
+default_output_hook = knitr::knit_hooks$get("output")
+
+knitr::knit_hooks$set(
+  output = function(x, options) {
+    comment = knitr::opts_current$get("comment")
+    
+    if (is.na(comment))
+      comment = ""
+    
+    can_null = grepl(paste0(comment, "\\s*\\[\\d?\\]"), x, perl = TRUE)
+    do_null = isTRUE(knitr::opts_current$get("null_prefix"))
+    
+    if (can_null && do_null) {
+      align_index = regexpr("\\]", x)[1] - 1
+      re = paste0("^.{", align_index, "}\\]")
+      rep = comment
+      x = gsub(re, rep, x)
+    }
+    
+    default_output_hook(x, options)
+  }
+)
+```
+
+# {.tabset .tabset-fade .tabset-pills}  
+
+## Section 1 {.tabset .tabset-fade .tabset-pills}  
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Semper auctor neque vitae tempus quam pellentesque nec nam. Cras adipiscing enim eu turpis egestas pretium aenean. Semper quis lectus nulla at volutpat diam ut venenatis tellus. Pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Dolor purus non enim praesent elementum facilisis. Lorem ipsum dolor sit amet consectetur. Ullamcorper a lacus vestibulum sed arcu non odio. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet. Convallis a cras semper auctor neque vitae tempus quam. Id nibh tortor id aliquet lectus proin nibh nisl. Cras pulvinar mattis nunc sed blandit libero volutpat sed cras. Scelerisque fermentum dui faucibus in. At tellus at urna condimentum.    
+
+## Section 2 {.tabset .tabset-fade .tabset-pills}  
+
+### Subsection 1  
+
+A list:  
+
+* Item 1  
+* Item 2  
+* Item 3  
+
+### Subsection 2  
+
+Mathematical expressions can also be rendered, either inline as in $\alpha + \beta$ or in display mode:  
+
+$$\text{f}(x) = \frac{e^{-x}x!}{x^2 + 2x + 3}$$  
+
+More text here. Add two spaces at the end of each line or paragraph.  
+
+## Section 3 {.tabset .tabset-fade .tabset-pills}  
+
+### Sample Text  
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.  
